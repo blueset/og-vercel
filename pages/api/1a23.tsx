@@ -21,8 +21,10 @@ const RedHatDisplay = fetch(
 const RedHatDisplayBold = fetch(
   new URL("../../assets/RedHatDisplay-Bold.ttf", import.meta.url)
 ).then((res) => res.arrayBuffer());
-const TsimJ = fetch(new URL("../../assets/TsimSans-J-Regular.otf", import.meta.url)).then((res) => res.arrayBuffer());
-const TsimJBold = fetch(new URL("../../assets/TsimSans-J-Bold.otf", import.meta.url)).then((res) => res.arrayBuffer());
+// const TsimJ = fetch(new URL("../../assets/TsimSans-J-Regular.otf", import.meta.url)).then((res) => res.arrayBuffer());
+// const TsimJBold = fetch(new URL("../../assets/TsimSans-J-Bold.otf", import.meta.url)).then((res) => res.arrayBuffer());
+const TsimJ = fetch(new URL(`${process.env.VERCEL_URL}TsimSans-J-Regular.otf`, import.meta.url)).then((res) => res.arrayBuffer());
+const TsimJBold = fetch(new URL(`${process.env.VERCEL_URL}TsimSans-J-Bold.otf`, import.meta.url)).then((res) => res.arrayBuffer());
 
 const pattern = fetch(
   new URL("../../assets/pattern.svg", import.meta.url)

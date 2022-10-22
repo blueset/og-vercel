@@ -15,15 +15,15 @@ const Inter = fetch(new URL("../../assets/Inter-Regular.otf", import.meta.url)).
 const InterBold = fetch(new URL("../../assets/Inter-Bold.otf", import.meta.url)).then(
   (res) => res.arrayBuffer()
 );
-const TsimJ = fetch(new URL("../../assets/TsimSans-J-Regular.otf", import.meta.url)).then((res) => res.arrayBuffer());
-const TsimJBold = fetch(new URL("../../assets/TsimSans-J-Bold.otf", import.meta.url)).then((res) => res.arrayBuffer());
+// const TsimJ = fetch(new URL("../../assets/TsimSans-J-Regular.otf", import.meta.url)).then((res) => res.arrayBuffer());
+// const TsimJBold = fetch(new URL("../../assets/TsimSans-J-Bold.otf", import.meta.url)).then((res) => res.arrayBuffer());
+const TsimJ = fetch(new URL(`${process.env.VERCEL_URL}TsimSans-J-Regular.otf`, import.meta.url)).then((res) => res.arrayBuffer());
+const TsimJBold = fetch(new URL(`${process.env.VERCEL_URL}TsimSans-J-Bold.otf`, import.meta.url)).then((res) => res.arrayBuffer());
 
 const logo = fetch(
   new URL("../../assets/sekai.svg", import.meta.url)
 ).then((res) => res.text())
   .then((text) => encodeURIComponent(text));
-const sekaiBg = fetch(new URL("../../assets/sekai-bg.jpg", import.meta.url)).then((res) => res.arrayBuffer())
-  .then((arrayBuffer) => btoa(String.fromCharCode.apply(null, new Uint8Array(arrayBuffer))));
 
 export default async function handler(req: NextRequest) {
   try {
@@ -31,7 +31,6 @@ export default async function handler(req: NextRequest) {
     const InterBoldData = await InterBold;
     const TsimJData = await TsimJ;
     const TsimJBoldData = await TsimJBold;
-    const sekaiBgData = await sekaiBg;
     const logoData = await logo;
 
     const { searchParams } = new URL(req.url);
