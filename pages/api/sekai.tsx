@@ -46,7 +46,7 @@ export default async function handler(req: NextRequest) {
       (<div style={{
         display: "flex",
         // backgroundImage: `url('http://127.0.0.1:3000/sekai-bg.jpg')`,
-        backgroundImage: `url(${process.env.VERCEL_URL}/sekai-bg.jpg)`,
+        backgroundImage: `url(https://${process.env.VERCEL_URL}/sekai-bg.jpg)`,
         // backgroundImage: `url(https://sns.sega.jp/sp/telework/telework-wp_sekai_06.jpg)`,
         // backgroundImage: `url('data:image/jpeg;base64,${sekaiBgData}')`,
         color: "rgb(23, 23, 23)",
