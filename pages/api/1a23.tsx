@@ -64,7 +64,7 @@ export default async function handler(req: NextRequest) {
       : "1A23 Studio";
     const type = searchParams.has("type") ? searchParams.get("type") : null;
     const desc = searchParams.has("desc") ? searchParams.get("desc") : null;
-    const typeColor = typeColors[type.toLowerCase()];
+    const typeColor = type ? typeColors[type.toLowerCase()] : null;
 
     return new ImageResponse(
       (
