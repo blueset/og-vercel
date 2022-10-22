@@ -23,8 +23,8 @@ const RedHatDisplayBold = fetch(
 ).then((res) => res.arrayBuffer());
 // const TsimJ = fetch(new URL("../../assets/TsimSans-J-Regular.otf", import.meta.url)).then((res) => res.arrayBuffer());
 // const TsimJBold = fetch(new URL("../../assets/TsimSans-J-Bold.otf", import.meta.url)).then((res) => res.arrayBuffer());
-const TsimJ = fetch(new URL(`${process.env.VERCEL_URL}TsimSans-J-Regular.otf`, import.meta.url)).then((res) => res.arrayBuffer());
-const TsimJBold = fetch(new URL(`${process.env.VERCEL_URL}TsimSans-J-Bold.otf`, import.meta.url)).then((res) => res.arrayBuffer());
+const TsimJ = fetch(new URL(`https://${process.env.VERCEL_URL}/TsimSans-J-Regular.otf`, import.meta.url)).then((res) => res.arrayBuffer());
+const TsimJBold = fetch(new URL(`https://${process.env.VERCEL_URL}/TsimSans-J-Bold.otf`, import.meta.url)).then((res) => res.arrayBuffer());
 
 const pattern = fetch(
   new URL("../../assets/blog-pattern.svg", import.meta.url)
