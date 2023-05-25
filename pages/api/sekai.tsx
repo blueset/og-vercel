@@ -9,10 +9,10 @@ const width = 1200;
 const height = 630;
 const logoRatio = 468.7 / 215.63;
 
-const Inter = fetch(new URL("../../assets/Inter-Regular.otf", import.meta.url)).then(
+const Inter = fetch(new URL("../../assets/Inter-Regular.woff", import.meta.url)).then(
   (res) => res.arrayBuffer()
 );
-const InterBold = fetch(new URL("../../assets/Inter-Bold.otf", import.meta.url)).then(
+const InterBold = fetch(new URL("../../assets/Inter-Bold.woff", import.meta.url)).then(
   (res) => res.arrayBuffer()
 );
 // const TsimJ = fetch(new URL("../../public/TsimSans-J-Regular.otf", import.meta.url)).then((res) => res.arrayBuffer());

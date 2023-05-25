@@ -9,10 +9,10 @@ const width = 1200;
 const height = 630;
 const logoRatio = 1660 / 587;
 
-const Inter = fetch(new URL("../../assets/Inter-Regular.otf", import.meta.url)).then(
+const Inter = fetch(new URL("../../assets/Inter-Regular.woff", import.meta.url)).then(
   (res) => res.arrayBuffer()
 );
-const InterBoldItalic = fetch(new URL("../../assets/Inter-BoldItalic.otf", import.meta.url)).then(
+const InterBoldItalic = fetch(new URL("../../assets/Inter-BoldItalic.woff", import.meta.url)).then(
   (res) => res.arrayBuffer()
 );
 const RedHatDisplay = fetch(
@@ -51,7 +51,6 @@ export default async function handler(req: NextRequest) {
 
     const { searchParams } = new URL(req.url);
 
-    // ?title=<title>&desc=<desc>
     const title = searchParams.has("title")
       ? searchParams.get("title")
       : "1A23 Studio";
@@ -115,10 +114,8 @@ export default async function handler(req: NextRequest) {
               margin: "10px 0",
               padding: "0",
               width: "100%",
-              maxHeight: 60*1.3*3,
               fontFeatureSettings: "'palt' 1",
               lineClamp: 3,
-              // textOverflow: "ellipsis",
             }}>{title}</h1>
             {desc && <p style={{
               display: "block",
@@ -126,7 +123,6 @@ export default async function handler(req: NextRequest) {
               fontFamily: "Inter, 'Tsim Sans J'",
               lineHeight: 1.5,
               overflow: "hidden",
-              maxHeight: 20 * 1.7 * 2,
               margin: "0",
               padding: "0",
               width: "100%",

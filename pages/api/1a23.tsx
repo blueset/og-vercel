@@ -9,10 +9,10 @@ const width = 1200;
 const height = 630;
 const logoRatio = 1372 / 585;
 
-const Inter = fetch(new URL("../../assets/Inter-Regular.otf", import.meta.url)).then(
+const Inter = fetch(new URL("../../assets/Inter-Regular.woff", import.meta.url)).then(
   (res) => res.arrayBuffer()
 );
-const InterBoldItalic = fetch(new URL("../../assets/Inter-BoldItalic.otf", import.meta.url)).then(
+const InterBoldItalic = fetch(new URL("../../assets/Inter-BoldItalic.woff", import.meta.url)).then(
   (res) => res.arrayBuffer()
 );
 const RedHatDisplay = fetch(
