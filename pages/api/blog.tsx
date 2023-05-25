@@ -9,17 +9,17 @@ const width = 1200;
 const height = 630;
 const logoRatio = 1660 / 587;
 
-const Inter = fetch(new URL("../../assets/Inter-Regular.woff", import.meta.url)).then(
+const Inter = fetch(new URL("https://${process.env.VERCEL_URL}/Inter-Regular.woff", import.meta.url)).then(
   (res) => res.arrayBuffer()
 );
-const InterBoldItalic = fetch(new URL("../../assets/Inter-BoldItalic.woff", import.meta.url)).then(
+const InterBoldItalic = fetch(new URL("https://${process.env.VERCEL_URL}/Inter-BoldItalic.woff", import.meta.url)).then(
   (res) => res.arrayBuffer()
 );
 const RedHatDisplay = fetch(
-  new URL("../../assets/RedHatDisplay-Regular.ttf", import.meta.url)
+  new URL("https://${process.env.VERCEL_URL}/RedHatDisplay-Regular.ttf", import.meta.url)
 ).then((res) => res.arrayBuffer());
 const RedHatDisplayBold = fetch(
-  new URL("../../assets/RedHatDisplay-Bold.ttf", import.meta.url)
+  new URL("https://${process.env.VERCEL_URL}/RedHatDisplay-Bold.ttf", import.meta.url)
 ).then((res) => res.arrayBuffer());
 // const TsimJ = fetch(new URL("../../public/TsimSans-J-Regular.otf", import.meta.url)).then((res) => res.arrayBuffer());
 // const TsimJBold = fetch(new URL("../../public/TsimSans-J-Bold.otf", import.meta.url)).then((res) => res.arrayBuffer());
