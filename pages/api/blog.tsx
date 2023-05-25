@@ -111,7 +111,6 @@ export default async function handler(req: NextRequest) {
               fontFamily: "'Red Hat Display', 'Tsim Sans J'",
               color: "#fff",
               lineHeight: 1.1,
-              lineClamp: "3",
               overflow: "hidden",
               margin: "10px 0",
               padding: "0",
