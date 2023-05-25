@@ -2,7 +2,7 @@ import { ImageResponse } from "@vercel/og";
 import { NextRequest } from "next/server";
 
 export const config = {
-  runtime: "experimental-edge",
+  runtime: "edge",
 };
 
 const width = 1200;
@@ -21,19 +21,21 @@ const RedHatDisplay = fetch(
 const RedHatDisplayBold = fetch(
   new URL("../../assets/RedHatDisplay-Bold.ttf", import.meta.url)
 ).then((res) => res.arrayBuffer());
-// const TsimJ = fetch(new URL("../../assets/TsimSans-J-Regular.otf", import.meta.url)).then((res) => res.arrayBuffer());
-// const TsimJBold = fetch(new URL("../../assets/TsimSans-J-Bold.otf", import.meta.url)).then((res) => res.arrayBuffer());
+// const TsimJ = fetch(new URL("../../public/TsimSans-J-Regular.otf", import.meta.url)).then((res) => res.arrayBuffer());
+// const TsimJBold = fetch(new URL("../../public/TsimSans-J-Bold.otf", import.meta.url)).then((res) => res.arrayBuffer());
 const TsimJ = fetch(new URL(`https://${process.env.VERCEL_URL}/TsimSans-J-Regular.otf`, import.meta.url)).then((res) => res.arrayBuffer());
 const TsimJBold = fetch(new URL(`https://${process.env.VERCEL_URL}/TsimSans-J-Bold.otf`, import.meta.url)).then((res) => res.arrayBuffer());
 
 const pattern = fetch(
   new URL("../../assets/blog-pattern.svg", import.meta.url)
-).then((res) => res.text())
+).then((res) => res.arrayBuffer())
+.then((buf) => Buffer.from(buf).toString("utf8"))
   .then((text) => encodeURIComponent(text));
 
 const logo = fetch(
   new URL("../../assets/blog.svg", import.meta.url)
-).then((res) => res.text())
+).then((res) => res.arrayBuffer())
+.then((buf) => Buffer.from(buf).toString("utf8"))
   .then((text) => encodeURIComponent(text));
 
 export default async function handler(req: NextRequest) {
@@ -103,6 +105,7 @@ export default async function handler(req: NextRequest) {
               display: "flex", flexGrow: 1
             }}></div>
             <h1 style={{
+              display: "block",
               fontSize: "60px",
               fontWeight: "bold",
               fontFamily: "'Red Hat Display', 'Tsim Sans J'",
@@ -115,17 +118,20 @@ export default async function handler(req: NextRequest) {
               width: "100%",
               maxHeight: 60*1.3*3,
               fontFeatureSettings: "'palt' 1",
+              lineClamp: 3,
               // textOverflow: "ellipsis",
             }}>{title}</h1>
             {desc && <p style={{
-            fontSize: "20px",
-            fontFamily: "Inter, 'Tsim Sans J'",
-            lineHeight: 1.5,
-            overflow: "hidden",
-            maxHeight: 20 * 1.7 * 2,
-            margin: "0",
-            padding: "0",
-            width: "100%",
+              display: "block",
+              fontSize: "20px",
+              fontFamily: "Inter, 'Tsim Sans J'",
+              lineHeight: 1.5,
+              overflow: "hidden",
+              maxHeight: 20 * 1.7 * 2,
+              margin: "0",
+              padding: "0",
+              width: "100%",
+              lineClamp: 2,
             }}>{desc}</p>}
           </div>
         </div>

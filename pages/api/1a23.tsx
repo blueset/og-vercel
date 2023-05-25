@@ -2,7 +2,7 @@ import { ImageResponse } from "@vercel/og";
 import { NextRequest } from "next/server";
 
 export const config = {
-  runtime: "experimental-edge",
+  runtime: "edge",
 };
 
 const width = 1200;
@@ -21,19 +21,21 @@ const RedHatDisplay = fetch(
 const RedHatDisplayBold = fetch(
   new URL("../../assets/RedHatDisplay-Bold.ttf", import.meta.url)
 ).then((res) => res.arrayBuffer());
-// const TsimJ = fetch(new URL("../../assets/TsimSans-J-Regular.otf", import.meta.url)).then((res) => res.arrayBuffer());
-// const TsimJBold = fetch(new URL("../../assets/TsimSans-J-Bold.otf", import.meta.url)).then((res) => res.arrayBuffer());
+// const TsimJ = fetch(new URL("../../public/TsimSans-J-Regular.otf", import.meta.url)).then((res) => res.arrayBuffer());
+// const TsimJBold = fetch(new URL("../../public/TsimSans-J-Bold.otf", import.meta.url)).then((res) => res.arrayBuffer());
 const TsimJ = fetch(new URL(`https://${process.env.VERCEL_URL}/TsimSans-J-Regular.otf`, import.meta.url)).then((res) => res.arrayBuffer());
 const TsimJBold = fetch(new URL(`https://${process.env.VERCEL_URL}/TsimSans-J-Bold.otf`, import.meta.url)).then((res) => res.arrayBuffer());
 
 const pattern = fetch(
   new URL("../../assets/pattern.svg", import.meta.url)
-).then((res) => res.text())
+).then((res) => res.arrayBuffer())
+.then((buf) => Buffer.from(buf).toString("utf8"))
   .then((text) => encodeURIComponent(text));
 
 const logo = fetch(
   new URL("../../assets/logo.svg", import.meta.url)
-).then((res) => res.text())
+).then((res) => res.arrayBuffer())
+.then((buf) => Buffer.from(buf).toString("utf8"))
   .then((text) => encodeURIComponent(text));
 
 const typeColors = {
@@ -113,19 +115,22 @@ export default async function handler(req: NextRequest) {
             <div style={{
               display: "flex", flexGrow: 1
             }}></div>
-            {type && <small style={{
-              fontSize: "24px",
-              fontFamily: "Inter",
-              textTransform: "lowercase",
-              fontWeight: "bold",
-              fontStyle: "italic",
-              backgroundColor: typeColor || "#00171f",
-              padding: "4px 8px",
-              borderRadius: "8px",
-              marginBottom: "-8px",
-              maxWidth: "100%",
-            }}>{type}</small>}
+            {type && <div style={{display: "flex"}}>
+              <small style={{
+                fontSize: "24px",
+                fontFamily: "Inter",
+                textTransform: "lowercase",
+                fontWeight: "bold",
+                fontStyle: "italic",
+                backgroundColor: typeColor || "#00171f",
+                padding: "4px 8px",
+                borderRadius: "8px",
+                marginBottom: "-8px",
+                maxWidth: "100%",
+              }}>{type}</small>
+            </div>}
             <h1 style={{
+              display: "block",
               fontSize: "60px",
               fontWeight: "bold",
               fontFamily: "'Red Hat Display', 'Tsim Sans J'",
@@ -138,17 +143,20 @@ export default async function handler(req: NextRequest) {
               width: "100%",
               maxHeight: 60*1.3*3,
               fontFeatureSettings: "'palt' 1",
+              lineClamp: 3,
               // textOverflow: "ellipsis",
             }}>{title}</h1>
             {desc && <p style={{
-            fontSize: "20px",
-            fontFamily: "Inter, 'Tsim Sans J'",
-            lineHeight: 1.5,
-            overflow: "hidden",
-            maxHeight: 20 * 1.7 * 2,
-            margin: "0",
-            padding: "0",
-            width: "100%",
+              display: "block",
+              fontSize: "20px",
+              fontFamily: "Inter, 'Tsim Sans J'",
+              lineHeight: 1.5,
+              overflow: "hidden",
+              maxHeight: 20 * 1.7 * 2,
+              margin: "0",
+              padding: "0",
+              width: "100%",
+              lineClamp: 2,
             }}>{desc}</p>}
           </div>
         </div>

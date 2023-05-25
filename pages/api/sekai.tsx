@@ -15,14 +15,15 @@ const Inter = fetch(new URL("../../assets/Inter-Regular.otf", import.meta.url)).
 const InterBold = fetch(new URL("../../assets/Inter-Bold.otf", import.meta.url)).then(
   (res) => res.arrayBuffer()
 );
-// const TsimJ = fetch(new URL("../../assets/TsimSans-J-Regular.otf", import.meta.url)).then((res) => res.arrayBuffer());
-// const TsimJBold = fetch(new URL("../../assets/TsimSans-J-Bold.otf", import.meta.url)).then((res) => res.arrayBuffer());
+// const TsimJ = fetch(new URL("../../public/TsimSans-J-Regular.otf", import.meta.url)).then((res) => res.arrayBuffer());
+// const TsimJBold = fetch(new URL("../../public/TsimSans-J-Bold.otf", import.meta.url)).then((res) => res.arrayBuffer());
 const TsimJ = fetch(new URL(`https://${process.env.VERCEL_URL}/TsimSans-J-Regular.otf`, import.meta.url)).then((res) => res.arrayBuffer());
 const TsimJBold = fetch(new URL(`https://${process.env.VERCEL_URL}/TsimSans-J-Bold.otf`, import.meta.url)).then((res) => res.arrayBuffer());
 
 const logo = fetch(
   new URL("../../assets/sekai.svg", import.meta.url)
-).then((res) => res.text())
+).then((res) => res.arrayBuffer())
+.then((buf) => Buffer.from(buf).toString("utf8"))
   .then((text) => encodeURIComponent(text));
 
 export default async function handler(req: NextRequest) {
@@ -69,6 +70,8 @@ export default async function handler(req: NextRequest) {
           gap: "24px",
         }}>
           {authors && <small style={{
+            display: "block",
+            lineClamp: 1,
             fontSize: "24px",
             maxWidth: "100%",
             fontWeight: "600",
@@ -77,6 +80,7 @@ export default async function handler(req: NextRequest) {
             filter: "drop-shadow(0 0 3px white) drop-shadow(0 0 3px white) drop-shadow(0 0 3px white)",
           }}>{authors}</small>}
           <h1 style={{
+            display: "block",
             fontSize: "60px",
             fontWeight: "bold",
             maxWidth: "100%",
@@ -90,8 +94,10 @@ export default async function handler(req: NextRequest) {
             padding: "5px",
             margin: "0",
             filter: "drop-shadow(0 0 3px white) drop-shadow(0 0 3px white) drop-shadow(0 0 3px white)",
+            lineClamp: 3,
           }}>{title}</h1>
           {desc && <p style={{
+            display: "block",
             fontSize: "20px",
             maxWidth: "100%",
             lineHeight: 1.5,
@@ -100,6 +106,7 @@ export default async function handler(req: NextRequest) {
             textAlign: "center",
             margin: "0",
             filter: "drop-shadow(0 0 3px white) drop-shadow(0 0 3px white) drop-shadow(0 0 3px white)",
+            lineClamp: 2,
           }}>{desc}</p>}
         </div>
         <img src={`data:image/svg+xml,${logoData}`} height={100} width={Math.round(100 * logoRatio)} style={{
