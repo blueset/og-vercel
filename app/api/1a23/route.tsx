@@ -1,6 +1,6 @@
 import { ImageResponse } from "@takumi-rs/image-response/wasm";
 import type { FontDetails } from "@takumi-rs/wasm";
-import module from "@takumi-rs/wasm/next";
+import { module } from "../module";
 
 export const runtime = "edge";
 
