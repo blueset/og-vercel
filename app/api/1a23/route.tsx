@@ -1,7 +1,5 @@
-import { ImageResponse } from "@takumi-rs/image-response/wasm";
+import { ImageResponse } from "@takumi-rs/image-response";
 import type { FontDetails } from "@takumi-rs/wasm";
-
-export const runtime = "edge";
 
 const width = 1200;
 const height = 630;
@@ -134,7 +132,6 @@ export function GET(request: Request) {
       height,
       format: "png",
       fonts,
-      module: import("@takumi-rs/wasm/next"),
     }
   );
 }
